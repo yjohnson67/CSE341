@@ -11,6 +11,10 @@ const professionalRoutes = require('./routes/contacts'); //Handles the routes re
 const port = process.env.PORT || 8080;//This defines the port your app will run on, using an environment variable if available (for deployment), or defaulting to 8080.
 const app = express();
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 //Middleware Setup
 app
   .use(bodyParser.json()) //bodyParser.json(): Allows Express to read req.body when data is sent in JSON format.
